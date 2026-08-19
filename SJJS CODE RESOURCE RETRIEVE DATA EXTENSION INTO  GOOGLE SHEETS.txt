@@ -1,0 +1,25 @@
+<script runat="server">
+Platform.Load("Core", "1.1.1");
+  
+  
+  try{
+    
+    var parametric = Request.GetQueryStringParameter("externalkey");
+    var myDe = DataExtension.Init(parametric);
+    var data = myDe.Rows.Retrieve();
+    var outputmetric = '{"data":"Empty"}';
+    
+    if (parametric === "2B64027B-387A-40D3-96F7-1A3CF800782A"){
+     if (data.length > 0){
+     }
+     outputmetric = Platform.Function.Stringify(data);
+    }else{
+     outputmetric = '{"External Key": "not found"}'
+    }
+  Write(outputmetric)
+  
+  }catch(e){
+     Write("Error message: "+ e)
+  }
+  
+</script>
